@@ -80,6 +80,10 @@ def notification():
             notification.completed_date = datetime.utcnow()
             notification.status = 'Notified {} attendees'.format(len(attendees))
             db.session.commit()
+
+            message = ServiceBusMessage(str(notification.id))
+            queue_client.send_messages(message)
+
             # TODO Call servicebus queue_client to enqueue notification ID
 
             #################################################
@@ -96,7 +100,7 @@ def notification():
 
 
 def send_email(email, subject, body):
-    if not app.config.get('SENDGRID_API_KEY')
+    if not app.config.get('SENDGRID_API_KEY'):
         message = Mail(
             from_email=app.config.get('ADMIN_EMAIL_ADDRESS'),
             to_emails=email,
