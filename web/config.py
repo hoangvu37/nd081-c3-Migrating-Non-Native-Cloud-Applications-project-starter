@@ -9,7 +9,7 @@ class BaseConfig:
     POSTGRES_PW="admin@123456789"   #TODO: Update value
     POSTGRES_DB="techconfdb"   #TODO: Update value
     DB_URL = 'postgresql://{user}:{pw}@{url}/{db}'.format(user=POSTGRES_USER,pw=POSTGRES_PW,url=POSTGRES_URL,db=POSTGRES_DB)
-    SQLALCHEMY_DATABASE_URI = os.getenv('SQLALCHEMY_DATABASE_URI') or DB_URL
+    SQLALCHEMY_DATABASE_URI = DB_URL
     CONFERENCE_ID = 1
     SECRET_KEY = 'Os47f1tLxRXhdm_CDKf5772Pcm-XhVhHLSIvWiNkji0uAzFu8R-4nw=='
     SERVICE_BUS_CONNECTION_STRING ='Endpoint=sb://notificationqueue.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=3b/HgsJcWbM4rvQTLhT/vb6oQ1YbZO5cHuZF4+axXic=' #TODO: Update value
